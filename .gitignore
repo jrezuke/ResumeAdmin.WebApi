@@ -4,6 +4,7 @@
 
 *.userosscache
 *.sln.docstates
+*.old
 
 #Visual Studio files
 *.[Oo]bj
@@ -59,14 +60,19 @@ _Chutzpah*
 *.pidb
 *.userprefs
 
-# NuGet Packages
+#Ignore packages directory
+Packages/
+
+#Allow NuGet.exe
+!NuGet.exe
+
+#Ignore generated nupkg files
 *.nupkg
-# The packages folder can be ignored because of Package Restore
-**/packages/*
-# except build/, which is used as an MSBuild target.
-!**/packages/build/
-# Uncomment if necessary however generally it will be regenerated when needed
-#!**/packages/repositories.config
+
+#Allow released nupkg files
+!VisualStudioGitIgnore.1.0.nupkg
+!VisualStudioGitIgnore.1.1.nupkg
+!VisualStudioGitIgnore.1.2.nupkg
 
 # ReSharper is a .NET coding add-in
 _ReSharper*/
