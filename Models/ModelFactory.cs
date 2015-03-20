@@ -19,9 +19,9 @@ namespace ResumeAdmin.WebApi.Models
             _repo = repo;
         }
 
-        public ResumeModel Create(Resume resume)
+        public ResumeModelLong Create(Resume resume)
         {
-            return new ResumeModel
+            return new ResumeModelLong
             {
                 Url = _UrlHelper.Link("Resume", new { id = resume.Id }),
                 Id = resume.Id,
@@ -35,8 +35,24 @@ namespace ResumeAdmin.WebApi.Models
 
         }
 
+        public ResumeModelShort Create(Resume resume, string anyString)
+        {
+            return new ResumeModelShort
+            {
+                Url = _UrlHelper.Link("Resume", new { id = resume.Id }),
+                Id = resume.Id,
+                Name = resume.Name,
+                Description = resume.Description,
+                PersonalInfoId = resume.PersonalInfoId
+
+            };
+
+        }
+
         public PersonalInfoModel Create(PersonalInfo personalInfo)
         {
+            if(personalInfo == null)
+                return null;
             return new PersonalInfoModel
             {
                 Id = personalInfo.Id,
@@ -52,9 +68,9 @@ namespace ResumeAdmin.WebApi.Models
             };
         }
 
-        public ResumeModel Create(Summary summary)
+        public ResumeModelLong Create(Summary summary)
         {
-            return new ResumeModel
+            return new ResumeModelLong
             {
                 Id = summary.Id,
                 Name = summary.Name,
@@ -62,7 +78,7 @@ namespace ResumeAdmin.WebApi.Models
             };
 
         }
-        public Resume Parse(ResumeModel model)
+        public Resume Parse(ResumeModelLong model)
         {
             try
             {

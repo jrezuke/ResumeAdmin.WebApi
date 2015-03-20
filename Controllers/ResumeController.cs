@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.UI;
 using ResumeAdmin.Data;
 using ResumeAdmin.Data.Entities;
@@ -12,6 +13,7 @@ using ResumeAdmin.WebApi.Models;
 
 namespace ResumeAdmin.WebApi.Controllers
 {
+    [EnableCors(origins: "http://localhost:63342", headers: "*", methods: "*")]
     [RoutePrefix("api/resume")]
     public class ResumeController : BaseApiController
     {
@@ -21,19 +23,19 @@ namespace ResumeAdmin.WebApi.Controllers
         }
 
         [Route(Name = "Resumes")]
-        //public IQueryable<Resume> Get()
-        //{
-        //    IQueryable<Resume> query;
-        //    query = Repository.GetAllResumes();
-        //    //var results = query.Select(r => TheModelFactory.Create(r)); 
-        //    return query;
-        //}
-
         public IHttpActionResult Get()
         {
             IQueryable<Resume> query = Repository.GetAllResumes();
             var results = query.ToList().Select(r => TheModelFactory.Create(r));
-            return Ok<IEnumerable<ResumeModel>>(results);
+            return Ok<IEnumerable<ResumeModelLong>>(results);
+        }
+
+        [Route("ResumesShort", Name = "ResumesShort")]
+        public IHttpActionResult GetResumesShort()
+        {
+            IQueryable<Resume> query = Repository.GetAllResumes();
+            var results = query.ToList().Select(r => TheModelFactory.Create(r));
+            return Ok<IEnumerable<ResumeModelLong>>(results);
         }
 
         [Route("{id:int}", Name = "Resume")]
@@ -41,12 +43,12 @@ namespace ResumeAdmin.WebApi.Controllers
         {
             var resume = Repository.GetResume(id);
             var result = TheModelFactory.Create(resume);
-            return Ok<ResumeModel>(result);
+            return Ok<ResumeModelLong>(result);
         }
 
         [Route(Name="AddResume")]
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]ResumeModel model)
+        public HttpResponseMessage Post([FromBody]ResumeModelLong model)
         {
             try
             {
