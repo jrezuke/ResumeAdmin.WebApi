@@ -19,9 +19,9 @@ namespace ResumeAdmin.WebApi.Models
             _repo = repo;
         }
 
-        public ResumeModelLong Create(Resume resume)
+        public ResumeModel Create(Resume resume)
         {
-            return new ResumeModelLong
+            return new ResumeModel
             {
                 Url = _UrlHelper.Link("Resume", new { id = resume.Id }),
                 Id = resume.Id,
@@ -35,7 +35,7 @@ namespace ResumeAdmin.WebApi.Models
 
         }
 
-        public ResumeModelShort Create(Resume resume, string anyString)
+        public ResumeModelShort Create(ResumeShort resume)
         {
             return new ResumeModelShort
             {
@@ -68,9 +68,9 @@ namespace ResumeAdmin.WebApi.Models
             };
         }
 
-        public ResumeModelLong Create(Summary summary)
+        public ResumeModel Create(Summary summary)
         {
-            return new ResumeModelLong
+            return new ResumeModel
             {
                 Id = summary.Id,
                 Name = summary.Name,
@@ -78,7 +78,7 @@ namespace ResumeAdmin.WebApi.Models
             };
 
         }
-        public Resume Parse(ResumeModelLong model)
+        public Resume Parse(ResumeModel model)
         {
             try
             {

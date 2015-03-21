@@ -139,6 +139,7 @@
     <Compile Include="Models\ModelFactory.cs" />
     <Compile Include="Models\PersonalInfoModel.cs" />
     <Compile Include="Models\ResumeModel.cs" />
+    <Compile Include="Models\ResumeModelShort.cs" />
     <Compile Include="Models\SummaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

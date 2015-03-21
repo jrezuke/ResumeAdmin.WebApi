@@ -27,15 +27,16 @@ namespace ResumeAdmin.WebApi.Controllers
         {
             IQueryable<Resume> query = Repository.GetAllResumes();
             var results = query.ToList().Select(r => TheModelFactory.Create(r));
-            return Ok<IEnumerable<ResumeModelLong>>(results);
+            return Ok<IEnumerable<ResumeModel>>(results);
         }
 
         [Route("ResumesShort", Name = "ResumesShort")]
+        [HttpGet]
         public IHttpActionResult GetResumesShort()
         {
-            IQueryable<Resume> query = Repository.GetAllResumes();
+            IQueryable<ResumeShort> query = Repository.GetAllResumesShort();
             var results = query.ToList().Select(r => TheModelFactory.Create(r));
-            return Ok<IEnumerable<ResumeModelLong>>(results);
+            return Ok<IEnumerable<ResumeModelShort>>(results);
         }
 
         [Route("{id:int}", Name = "Resume")]
@@ -43,12 +44,12 @@ namespace ResumeAdmin.WebApi.Controllers
         {
             var resume = Repository.GetResume(id);
             var result = TheModelFactory.Create(resume);
-            return Ok<ResumeModelLong>(result);
+            return Ok<ResumeModel>(result);
         }
 
         [Route(Name="AddResume")]
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]ResumeModelLong model)
+        public HttpResponseMessage Post([FromBody]ResumeModel model)
         {
             try
             {
