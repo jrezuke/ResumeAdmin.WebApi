@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ResumeAdmin.WebApi.Models
 {
-    public class PersonalInfoModel
+    public class PersonalInfoModelShort
     {
         public int Id { get; set; }
 

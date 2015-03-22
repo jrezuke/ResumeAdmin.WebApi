@@ -28,7 +28,7 @@ namespace ResumeAdmin.WebApi.Models
                 Name = resume.Name,
                 Description = resume.Description,
                 PersonalInfoId = resume.PersonalInfoId,
-                PersonalInfo =  Create(_repo.GetPersonalInfo(resume.PersonalInfoId)),
+                //PersonalInfo =  Create(_repo.GetPersonalInfo(resume.PersonalInfoId)),
                 SummaryId = resume.SummaryId
                 
             };
@@ -49,11 +49,11 @@ namespace ResumeAdmin.WebApi.Models
 
         }
 
-        public PersonalInfoModel Create(PersonalInfo personalInfo)
+        public PersonalInfoModelShort Create(PersonalInfoShort personalInfo)
         {
             if(personalInfo == null)
                 return null;
-            return new PersonalInfoModel
+            return new PersonalInfoModelShort
             {
                 Id = personalInfo.Id,
                 Name = personalInfo.Name,
